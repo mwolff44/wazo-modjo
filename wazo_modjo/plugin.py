@@ -4,13 +4,9 @@
 
 import logging
 
-from wazo_auth_client import Client as AuthClient
-
 logger = logging.getLogger(__name__)
 
 class Plugin:
 
     def load(self, dependencies):
-        api = dependencies['api']
-        config = dependencies['config']
-        token_changed_subscribe = dependencies['token_changed_subscribe']
+        print("ok")
