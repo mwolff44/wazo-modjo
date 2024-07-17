@@ -13,15 +13,11 @@ case "$1" in
         ;;
 
     install)
-	    wazo-auth-keys service update
         systemctl restart wazo-call-logd
-	    /usr/sbin/asterisk -rx 'core reload'
         ;;
 
     uninstall)
-	    wazo-auth-keys service update
         systemctl restart wazo-call-logd
-	    /usr/sbin/asterisk -rx 'core reload'
         ;;
 
     *)

@@ -16,7 +16,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'wazo_call_logd.plugins': [
-            'qmodjo = wazo_call_logd_queue.plugin:Plugin'
+            'qmodjo = wazo_modjo.plugin:Plugin'
         ],
     },
 )
