@@ -17,6 +17,7 @@ case "$1" in
     ;;
 
     uninstall)
+        rm -f /etc/wazo-call-logd/conf.d/modjo.yml
         systemctl restart wazo-call-logd
     ;;
 
