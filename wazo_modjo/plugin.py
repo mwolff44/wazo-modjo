@@ -2,12 +2,16 @@
 # Copyright 2018-2024 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0+
 
+import logging
+
 from wazo_auth_client import Client as AuthClient
 from wazo_call_logd_client import Client as CallLogdClient
 
 from .bus_consume import CdrBusEventHandler
 
-class Plugin(object):
+logger = logging.getLogger(__name__)
+
+class Plugin:
 
     def load(self, dependencies):
         api = dependencies['api']
@@ -16,7 +20,9 @@ class Plugin(object):
         bus_consumer = dependencies['bus_consumer']
         bus_publisher = dependencies['bus_publisher']
 
+        auth_client = AuthClient(**config['auth'])
         call_logd_client = CallLogdClient(**config['call_logd'])
+        token_changed_subscribe(call_logd_client.set_token)
 
         # Get settings
         try:
@@ -32,8 +38,6 @@ class Plugin(object):
             MODJO_USERS = config['modjo_users']
         except:
             print("ERROR : DEFINE MODJO USERS !")
-
-        token_changed_subscribe(call_logd_client.set_token)
 
         cdr_bus_event_handler = CdrBusEventHandler(bus_publisher, MODJO_API, MODJO_KEY, MODJO_USERS)
         cdr_bus_event_handler.subscribe(bus_consumer)
