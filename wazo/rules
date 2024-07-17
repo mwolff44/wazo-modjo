@@ -5,24 +5,24 @@
 case "$1" in
     build)
         python3 setup.py bdist
-    ;;
+        ;;
 
     package)
         tar xvf dist/wazo-modjo-*.tar.gz -C ${pkgdir}
         cp -R etc ${pkgdir}/
-    ;;
+        ;;
 
     install)
         systemctl restart wazo-call-logd
-    ;;
+        ;;
 
     uninstall)
         rm -f /etc/wazo-call-logd/conf.d/modjo.yml
         systemctl restart wazo-call-logd
-    ;;
+        ;;
 
     *)
         echo "$0 called with unknown argument '$1'" >&2
         exit 1
-    ;;
+        ;;
 esac
