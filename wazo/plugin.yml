@@ -1,0 +1,9 @@
+name: wazo-modjo
+namespace: mwolff44
+version: 1.0.0
+author: Mathias WOLFF
+display_name: Modjo
+min_wazo_version: 24.06
+tags:
+  - recording
+homepage: https://github.com/mwolff44/wazo-modjo
