@@ -5,9 +5,6 @@
 import logging
 
 from wazo_auth_client import Client as AuthClient
-from wazo_call_logd_client import Client as CallLogdClient
-
-from .bus_consume import CdrBusEventHandler
 
 logger = logging.getLogger(__name__)
 
@@ -17,27 +14,3 @@ class Plugin:
         api = dependencies['api']
         config = dependencies['config']
         token_changed_subscribe = dependencies['token_changed_subscribe']
-        bus_consumer = dependencies['bus_consumer']
-        bus_publisher = dependencies['bus_publisher']
-
-        auth_client = AuthClient(**config['auth'])
-        call_logd_client = CallLogdClient(**config['call_logd'])
-        token_changed_subscribe(call_logd_client.set_token)
-
-        # Get settings
-        try:
-            MODJO_API = config['modjo_api']
-        except:
-            MODJO_API = "https://api.modjo.ai/v1/calls"
-        try:
-            MODJO_KEY = config['modjo_key']
-        except:
-            print("ERROR : DEFINE MODJO KEY !")
-
-        try:
-            MODJO_USERS = config['modjo_users']
-        except:
-            print("ERROR : DEFINE MODJO USERS !")
-
-        cdr_bus_event_handler = CdrBusEventHandler(bus_publisher, MODJO_API, MODJO_KEY, MODJO_USERS)
-        cdr_bus_event_handler.subscribe(bus_consumer)
