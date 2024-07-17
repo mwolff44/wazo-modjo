@@ -35,5 +35,5 @@ class Plugin(object):
 
         token_changed_subscribe(call_logd_client.set_token)
 
-        cdr_bus_event_handler = CdrBusEventHandler(bus_publisher, MODJO_KEY, MODJO_USERS)
+        cdr_bus_event_handler = CdrBusEventHandler(bus_publisher, MODJO_API, MODJO_KEY, MODJO_USERS)
         cdr_bus_event_handler.subscribe(bus_consumer)
