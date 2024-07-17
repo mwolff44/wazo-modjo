@@ -20,6 +20,6 @@ setup(
     entry_points={
         'wazo_call_logd.plugins': [
             'modjo = wazo_modjo.plugin:Plugin'
-        ],
+        ]
     },
 )
