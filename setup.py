@@ -15,9 +15,10 @@ setup(
     description=metadata['display_name'],
     author=metadata['author'],
     url=metadata['homepage'],
+    packages=find_packages(),
     entry_points={
         'wazo_call_logd.plugins': [
-            'modjo = wazo_modjo.plugin:Plugin',
-        ]
+            'modjo = wazo_modjo.plugin:Plugin'
+        ],
     },
 )
